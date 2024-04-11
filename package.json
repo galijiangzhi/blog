@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "docs:dev": "vuepress dev docs --port 42002",
+    "docs:dev": "vuepress dev docs --port 42002 --host 0.0.0.0",
     "docs:build": "vuepress build docs"
   },
   "author": "",
