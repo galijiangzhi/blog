@@ -47,7 +47,7 @@ YOLO（You Only Look Once）是一种流行的目标检测算法，它可以在�
 ### 安装PyTorch
 
 首先查看工作电脑的cuda版本，在终端输入以下命令
-> nvidia-msi
+> nvidia-smi
 
 查看当前显卡驱动和cuda版本
 
