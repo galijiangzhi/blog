@@ -10,7 +10,7 @@ collapsable: true
 YOLO（You Only Look Once）是一种流行的目标检测算法，它可以在图像中快速而准确地识别多个物体。YOLO的特点是能够实时处理图像，并且在单个前向传播中直接预测边界框和类别概率。这种方法使得YOLO在速度和准确性上都具有优势。YOLO算法通过将图像分成网格，并在每个网格中预测边界框和类别，从而实现对多个物体的检测。
 ### 创建虚拟环境
 
->conda create -n yolov python==3.8
+>conda create -n yolov5 python==3.8
 
 上述命令中的yolov5是环境名，可以根据自己的需求进行创建，创建过程中根据提示输入y确认。
 
