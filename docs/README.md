@@ -4,7 +4,7 @@ heroImage: /intp.jpeg
 heroText: AiBlog
 tagline: Ai应用方向个人博客
 actionText: 开始浏览 →
-actionLink: /guide/
+actionLink: /index/
 features:
 - title: 零基础上手
   details: 无需过多的理论基础，旨在帮助大家快速构建自己的工作环境和项目，快速完成各种需求和设计，同时在简单代码引导的基础上，适当介绍理论知识，在快速使用的基础上充实理论基础
