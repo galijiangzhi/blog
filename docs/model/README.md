@@ -93,11 +93,11 @@ YOLO（You Only Look Once）是一种流行的目标检测算法，它可以在�
 
 images/train 放入训练集图片文件
 
-images/val 放入测试集图片文件
+images/val 放入验证集图片文件
 
 label/train 放训练集图片标签
 
-label/val 放入测试集图片标签
+label/val 放入验证集图片标签
 
 创建好目录结构之后，将所有的数据集图片文件放入images/train中 
 
