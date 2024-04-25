@@ -113,7 +113,7 @@ label/val 放入验证集图片标签
 2.单击改变存放目录：选择label/train目录
 
 3.修改模式为yolo 
-
+                                                                                                                                                                        
 如下图所示:
 
 ![](../.vuepress/public/yolov5/labelimg_1.png)
