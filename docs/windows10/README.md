@@ -86,3 +86,21 @@ win+r 打开运行 输入 sysdm.cpl
 在文件夹地址栏中输入cmd 并敲回车
 
 ![](../.vuepress/public/windows10/cuda/ceshi3.gif)
+
+在终端中输入 deviceQuery.exe,可以复制下面的命令然后在终端里点一下鼠标右键（终端的粘贴指令不是ctrl+v 是鼠标右键）
+
+    deviceQuery.exe
+
+观察最下面的输出是不是PASS
+
+![](../.vuepress/public/windows10/cuda/ceshi4.png)
+
+如果不是PASS则需要重新安装，检查一下安装的版本和驱动推荐的版本是否一致。如果是PASS则继续输入 bandwidthTest.exe
+
+    bandwidthTest.exe
+
+继续观察最下面的输出是不是PASS，如果不是PASS则需要重新安装，检查一下安装的版本和驱动推荐的版本是否一致。
+
+![](../.vuepress/public/windows10/cuda/ceshi5.png)
+
+如果两个都是PASS 说明CUDA安装完成
