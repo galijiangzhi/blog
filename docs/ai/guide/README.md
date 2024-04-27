@@ -29,8 +29,8 @@ AI模型的训练通常需要以下元素：
 
 首先先我们看一下2024年4月为止的显卡算力排行
 
-![](../.vuepress/public/assets/img/xiankasuanli.png)
-![](../.vuepress/public/assets/img/xiankasuanli1.png)
+![](../../.vuepress/public/assets/img/xiankasuanli.png)
+![](../../.vuepress/public/assets/img/xiankasuanli1.png)
 
 只要在榜上的其实都不错，根据自己的实际情况选择显卡，学习阶段不要太浪费，顶上那几种都是几万起步，贵的十几万一张，我经费不多算力平台装的是3060。这里需要注意的是，当前阶段新手显卡**一定要选择NVIDIA（英伟达）的显卡**，因为英伟达的显卡软件配套比较全面。其次**显存一定要大，10G起步**，多多益善。最后，选购显卡的时候一定要**注意配套电源**，保证算力平台正常运行。
 

@@ -5,9 +5,9 @@ module.exports = {
         logo: '/assets/img/intp.jpeg',
         nav: [
             { text: 'Home', link: '/' },
-            { text: 'Guide', link: '/guide/' },
-            { text: 'model',link: '/model/'},
-            { text: 'External', link: 'https://google.com' },
+            { text: 'index', link: '/index/' },
+            { text: 'model',link: '/ai/model/'},
+            { text: 'github', link: 'https://github.com/galijiangzhi/blog' },
             
         ],
       }
