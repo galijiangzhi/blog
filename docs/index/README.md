@@ -6,7 +6,7 @@ collapsable: true
 
 ## [深度学习 ubuntu环境搭建](/ai/guide)
 
-## [深度学习 windows10 torch环境搭建](/ai/torch/windows10)
+<!-- ## [深度学习 windows10 torch环境搭建](/ai/torch/windows10) -->
 
 ## [yolov5简易使用教程](/ai/model/#yolov5)
 

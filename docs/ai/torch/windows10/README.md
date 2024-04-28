@@ -4,6 +4,12 @@ collapsable: true
 ---
 # win10中配置torch
     前提条件：要求电脑中已经配置了anaconda和英伟达显卡驱动
+
+## 下载显卡驱动
+    首先卸载当前存在的显卡驱动（如果有的话）
+
+    进入[英伟达官网显卡驱动下载页面](https://www.nvidia.cn/geforce/drivers/)
+
 ## 查看驱动推荐的CUDA版本
 首先查看显卡驱动推荐的显卡驱动，使用win+r cmd 打开终端
 
@@ -22,13 +28,26 @@ collapsable: true
 ## 下载CUDA安装包
 进入CUDA官网[（点击此处进入）](https://developer.nvidia.com/cuda-toolkit-archive)
 
-找到适合自己的显卡驱动的cuda版本，比如我就是12.4.0，这里我点击下图中的CUDA  tooklkit 12.4.0
+<!-- https://developer.download.nvidia.com/compute/cuda/12.1.0/local_installers/cuda_12.1.0_531.14_windows.exe win10 -->
+<!-- https://developer.download.nvidia.com/compute/cuda/12.1.0/local_installers/cuda_12.1.0_531.14_windows.exe win11 -->
+
+**当前pytorch(一会我们要用的软件)最高支持到cuda12.1，如果您的推荐版本大于12.1就下载cuda12.1。如果小于12.1就下载对应版本的cuda。**
+
+cuda官网连接较慢这里提供cuda12.1的快速下载链接：
+
+[cuda 12.1.0 win10/win11 64位安装包（点击下载）](https://developer.download.nvidia.com/compute/cuda/12.1.0/local_installers/cuda_12.1.0_531.14_windows.exe)
+[cuda 12.1.0 win10/win11 64位安装包（点击下载）](https://developer.download.nvidia.com/compute/cuda/12.1.1/local_installers/cuda_12.1.1_531.14_windows.exe)
+
+如果您需要别的版本的快速链接可以通过galijiangzhi@163.com联系我，我会尽快更新
+
+如果您不能使用cuda12.1就进入[CUDA官网（点击此处进入）](https://developer.nvidia.com/cuda-toolkit-archive)
+找到适合自己的显卡驱动的cuda版本，比如我就是12.1.1，这里我点击下图中的CUDA  tooklkit 12.1.1
 ![](../../../.vuepress/public/windows10/cuda/cudaguanwang.png)
 跳转到下图这样的下载页面，根据自己的计算机选择一下这些选项，从上往下分别是系统类型，系统架构，系统版本，离线安装或者在线安装，最后一个选离线安装。
 
 都选好之后点击下面的Download
 
-![](../../../.vuepress/public/windows10/cuda/cudadownload.png)
+![](../../../.vuepress/public/windows10/cuda/cuda121_1.png)
 
 ## 安装CUDA
 
@@ -52,7 +71,7 @@ collapsable: true
 
 设置安装位置，点击浏览选择安装位置，可以使用默认，如果不使用默认位置则要记住安装位置
 
-![](../../../.vuepress/public/windows10/cuda/cudainstall5.png)
+![](../../../.vuepress/public/windows10/cuda/cuda121_2.png)
 
 后续一直点下一步就ok
 
@@ -104,3 +123,40 @@ win+r 打开运行 输入 sysdm.cpl
 ![](../../../.vuepress/public/windows10/cuda/ceshi5.png)
 
 如果两个都是PASS 说明CUDA安装完成
+
+## 安装pytorch
+
+首先进入[pytorch官网（点击进入）](https://pytorch.org/)，或者[pytorch下载仓库（点击进入）](https://download.pytorch.org/whl/torch_stable.html)
+
+在[pytorch官网（点击进入）](https://pytorch.org/)中往下滑，有详细的新版本torch的安装教程，我们需要根据自己的操作系统进行教程选择，我现在是windows10 使用pip进行安装，选择如下图所示：
+
+这里没有最新的cuda12.4对应的torch，理论上讲cuda12.4可以兼容cuda12.1的torch，所以我们使用cuda12.1对应的torch
+![](../../../.vuepress/public/windows10/cuda/pytorchorg.gif)
+
+选好之后官网会给我们一个安装命令：
+
+![](../../../.vuepress/public/windows10/cuda/pytorchananzhuangmingling.png)
+
+复制pytorch官网给我们的最下面的安装命令，在后面加上
+
+    -i https://pypi.tuna.tsinghua.edu.cn/simple” （使用清华源的意思，可以安装的快一点）
+
+例如我的电脑就是下面这条：
+
+    pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+将处理好的命令粘贴到cmd的工作环境中，敲回车等待安装即可。**这里我建议使用anaconda创建一个python3.8.19进行操作，太新的python可能会有各种奇奇怪怪的问题**。
+
+## 验证pytorch
+
+在cmd的工作环境中依次输入（复制粘贴）
+
+    python
+
+    import torch
+ 
+    print(torch.__version__)
+    
+    print("gpu", torch.cuda.is_available())
+
+观察输出结果中的这几项是否存在
