@@ -17,7 +17,7 @@ collapsable: true
 
     nvidia-smi
 
-如图 我应该使用的cuda版本就是12.4
+如图 我的显卡最高使用的cuda版本就是12.4
 ![](../../../.vuepress/public/windows10/cuda/cuda-v.png)
 
 ## 下载CUDA安装包
