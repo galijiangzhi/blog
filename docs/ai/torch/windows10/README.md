@@ -5,11 +5,6 @@ collapsable: true
 # win10中配置torch
     前提条件：要求电脑中已经配置了anaconda和英伟达显卡驱动
 
-## 下载显卡驱动
-    首先卸载当前存在的显卡驱动（如果有的话）
-
-    进入[英伟达官网显卡驱动下载页面](https://www.nvidia.cn/geforce/drivers/)
-
 ## 查看驱动推荐的CUDA版本
 首先查看显卡驱动推荐的显卡驱动，使用win+r cmd 打开终端
 
@@ -36,7 +31,8 @@ collapsable: true
 cuda官网连接较慢这里提供cuda12.1的快速下载链接：
 
 [cuda 12.1.0 win10/win11 64位安装包（点击下载）](https://developer.download.nvidia.com/compute/cuda/12.1.0/local_installers/cuda_12.1.0_531.14_windows.exe)
-[cuda 12.1.0 win10/win11 64位安装包（点击下载）](https://developer.download.nvidia.com/compute/cuda/12.1.1/local_installers/cuda_12.1.1_531.14_windows.exe)
+
+[cuda 12.1.1 win10/win11 64位安装包（点击下载）](https://developer.download.nvidia.com/compute/cuda/12.1.1/local_installers/cuda_12.1.1_531.14_windows.exe)
 
 如果您需要别的版本的快速链接可以通过galijiangzhi@163.com联系我，我会尽快更新
 
@@ -126,26 +122,52 @@ win+r 打开运行 输入 sysdm.cpl
 
 ## 安装pytorch
 
-首先进入[pytorch官网（点击进入）](https://pytorch.org/)，或者[pytorch下载仓库（点击进入）](https://download.pytorch.org/whl/torch_stable.html)
+首先进入[pytorch下载仓库（点击进入）](https://download.pytorch.org/whl/torch_stable.html)
 
-在[pytorch官网（点击进入）](https://pytorch.org/)中往下滑，有详细的新版本torch的安装教程，我们需要根据自己的操作系统进行教程选择，我现在是windows10 使用pip进行安装，选择如下图所示：
+在[pytorch下载仓库（点击进入）](https://download.pytorch.org/whl/torch_stable.html)中往下滑，根据自己的cuda版本和python版本选择要下载的文件，如下图所示
 
-这里没有最新的cuda12.4对应的torch，理论上讲cuda12.4可以兼容cuda12.1的torch，所以我们使用cuda12.1对应的torch
-![](../../../.vuepress/public/windows10/cuda/pytorchorg.gif)
+![](../../../.vuepress/public/windows10/cuda/shoudong1.png)
 
-选好之后官网会给我们一个安装命令：
+这里提供一些快捷torch下载链接：
 
-![](../../../.vuepress/public/windows10/cuda/pytorchananzhuangmingling.png)
+[torch-cuda12.1-python3.8-windows(推荐右键复制链接到迅雷下载，直接点击下载很慢)](https://download.pytorch.org/whl/cu121/torch-2.3.0%2Bcu121-cp38-cp38-win_amd64.whl)
 
-复制pytorch官网给我们的最下面的安装命令，在后面加上
+[torch-cuda12.1-python3.9-windows(推荐右键复制链接到迅雷下载，直接点击下载很慢)](https://download.pytorch.org/whl/cu121/torch-2.3.0%2Bcu121-cp39-cp39-win_amd64.whl)
 
-    -i https://pypi.tuna.tsinghua.edu.cn/simple” （使用清华源的意思，可以安装的快一点）
+[torch-cuda12.1-python3.10-windows(推荐右键复制链接到迅雷下载，直接点击下载很慢)](https://download.pytorch.org/whl/cu121/torch-2.3.0%2Bcu121-cp310-cp310-win_amd64.whl)
 
-例如我的电脑就是下面这条：
+[torch-cuda12.1-python3.11-windows(推荐右键复制链接到迅雷下载，直接点击下载很慢)](https://download.pytorch.org/whl/cu121/torch-2.3.0%2Bcu121-cp311-cp311-win_amd64.whl)
 
-    pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 -i https://pypi.tuna.tsinghua.edu.cn/simple
+[torch-cuda12.1-python3.12-windows(推荐右键复制链接到迅雷下载，直接点击下载很慢)](https://download.pytorch.org/whl/cu121/torch-2.3.0%2Bcu121-cp312-cp312-win_amd64.whl)
 
-将处理好的命令粘贴到cmd的工作环境中，敲回车等待安装即可。**这里我建议使用anaconda创建一个python3.8.19进行操作，太新的python可能会有各种奇奇怪怪的问题**。
+推荐右键复制链接到迅雷下载，在上面这几个下载链接复制也可以在官网下载仓库复制也ok，如下图所示：
+
+![](../../../.vuepress/public/windows10/cuda/shoudong2.gif)
+
+下载完成后 使用管理员权限打开一个cmd，流程是开始菜单-windows系统-cmd-右键-更多-以管理员身份运行，如下图所示：
+
+![](../../../.vuepress/public/windows10/cuda/shoudong4.gif)
+
+首先确认一下自己的python工作环境，这块就不做演示了，每个人的工作环境不一样
+
+然后跳转到下载了文件的目录，示例：
+
+我的文件下载在d:/迅雷下载 首先在终端输入 d: 进入d盘
+
+    d:
+
+然后输入 cd 迅雷下载
+
+    cd 迅雷下载
+
+就进入了迅雷下载目录
+
+在终端输入 pip install 下载的文件名(不需要敲完，敲两个字母点一下tab会自动补全) ，如下图所示：
+
+![](../../../.vuepress/public/windows10/cuda/shoudong3.png)
+
+等待安装即可，要是报error的错误自己用ai查一下看哪里有问题，自己解决一下。
+
 
 ## 验证pytorch
 
@@ -160,3 +182,7 @@ win+r 打开运行 输入 sysdm.cpl
     print("gpu", torch.cuda.is_available())
 
 观察输出结果中的这几项是否存在
+
+![](../../../.vuepress/public/windows10/cuda/ceshi6.png)
+
+如果最后一个不是true的话，说明torch调用gpu失败，**依次检查你的显卡驱动，cuda和torch**，确认torch的python版本和cuda版本与你电脑上安装的cuda和python对应，如果还是有问题就**把显卡驱动降到531的版本**，531的版本推荐的cuda版本就是12.1不存在向下兼容的问题。
