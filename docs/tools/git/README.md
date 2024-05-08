@@ -104,6 +104,10 @@ ctrl+c 复制现实的git路径
 
 ![](../../.vuepress/public/tools/git/gitee.png)
 
+### 使用git拉取更新
+
+点击pycharm最上面的 git-拉去更新即可把项目更新成和云端服务器主目录相同的状态
+
 ### 使用gitee和pycharm进行分支管理
 
 “分支”主要用于多人开发不同模块，每个人在自己的分支进行独立开发，不影响别人的分支。
