@@ -4,14 +4,19 @@ collapsable: true
 ---
 # 开始
 
-## [深度学习 ubuntu环境搭建](/ai/guide)
+## 基本操作
 
-## [深度学习 windows10 torch环境搭建](/ai/torch/windows10)
+### [深度学习 ubuntu环境搭建](/ai/guide)
+### [深度学习 windows10 torch环境搭建](/ai/torch/windows10)
+### [yolov5简易使用教程](/ai/model/#yolov5)
+### [git简易使用教程](/tools/git)
 
-## [yolov5简易使用教程](/ai/model/#yolov5)
+## 图像分类
 
-## [git简易使用教程](/tools/git)
+### [AlexNet](/ai/image_classification/alexnet)
+### [vgg](/ai/image_classification/vgg)
+### [GoogLeNet](/ai/image_classification/googlenet)
 
-# 目标检测算法
+## 目标检测算法
 
-## [overfeat](/ai/object_detection/overfeat)
+### [overfeat](/ai/object_detection/two-stage/overfeat)
