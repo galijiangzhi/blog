@@ -20,3 +20,7 @@ collapsable: true
 ## 目标检测算法
 
 ### [overfeat](/ai/object_detection/two-stage/overfeat)
+
+## 参考文献
+
+### [network in network](/ai/References/network_in_network)
