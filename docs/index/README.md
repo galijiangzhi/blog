@@ -16,6 +16,7 @@ collapsable: true
 ### [AlexNet](/ai/image_classification/alexnet)
 ### [vgg](/ai/image_classification/vgg)
 ### [GoogLeNet](/ai/image_classification/googlenet)
+### [ResNet](/ai/image_classification/resnet)
 
 ## 目标检测算法
 
@@ -24,3 +25,7 @@ collapsable: true
 ## 参考文献
 
 ### [network in network](/ai/References/network_in_network)
+
+## 我的设计
+
+### [PhantomNet](/ai/References/network_in_network)
