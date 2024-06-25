@@ -28,4 +28,4 @@ collapsable: true
 
 ## 我的设计
 
-### [PhantomNet](/ai/References/network_in_network)
+### [PhantomNet](/ai/my/phantomnet)
