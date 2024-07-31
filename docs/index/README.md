@@ -17,15 +17,28 @@ collapsable: true
 ### [vgg](/ai/image_classification/vgg)
 ### [GoogLeNet](/ai/image_classification/googlenet)
 ### [ResNet](/ai/image_classification/resnet)
+### [DenseNet](/ai/image_classification/densenet)
+### [SENet](/ai/image_classification/senet)
+### [MobileNet_V1](/ai/image_classification/mobilenetv1)
+### [MobileNet_V2](/ai/image_classification/mobilenetv2)
 
-## 目标检测算法
+## 目标检测
 
 ### [overfeat](/ai/object_detection/two-stage/overfeat)
 
-## 参考文献
+## 自然语言处理
+
+### [rnn入门](/ai/nlp/rnn_rumen)
+
+## 技术参考
 
 ### [network in network](/ai/References/network_in_network)
+### [nas（神经网络结构搜索）](/ai/References/nas)
 
 ## 我的设计
 
 ### [PhantomNet](/ai/my/phantomnet)
+
+<!-- ## 华为人才认证学习经历
+
+### [HCIA-AI](/HUAWEI/HCIA-AI) -->
