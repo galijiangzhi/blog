@@ -30,6 +30,10 @@ collapsable: true
 
 ### [rnn入门](/ai/nlp/rnn_rumen)
 
+## RL 强化学习
+
+### [强化学习入门](/ai/reinforcement_learning/summarize)
+
 ## 技术参考
 
 ### [network in network](/ai/References/network_in_network)

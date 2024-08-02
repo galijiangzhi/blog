@@ -8,6 +8,7 @@ module.exports = {
             { text: 'index', link: '/index/' },
             { text: 'model',link: '/ai/model/'},
             { text: 'github', link: 'https://github.com/galijiangzhi/blog' },
+            { text: 'draft ',link: '/literary/'},
             
         ],
       }
