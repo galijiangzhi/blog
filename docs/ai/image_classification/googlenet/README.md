@@ -60,6 +60,8 @@ collapsable: true
 
 进入实验环境后，首先检查gpu是否正常：
 
+    import torch
+    import torch.nn as nn
     if torch.cuda.is_available():
         # 获取GPU设备数量
         device_count = torch.cuda.device_count()

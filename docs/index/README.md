@@ -21,14 +21,21 @@ collapsable: true
 ### [SENet](/ai/image_classification/senet)
 ### [MobileNet_V1](/ai/image_classification/mobilenetv1)
 ### [MobileNet_V2](/ai/image_classification/mobilenetv2)
+### [EfficientNet](/ai/image_classification/efficientnet)
 
 ## 目标检测
-
-### [overfeat](/ai/object_detection/two-stage/overfeat)
+### [传统目标检测方法](/ai/object_detection/traditional_algorithm)
+### [overfeat](/ai/object_detection/overfeat)
+### [R-CNN](/ai/object_detection/rcnn)
+### [Fast R-CNN](/ai/object_detection/fast_rcnn)
+### [Faster R-CNN](/ai/object_detection/faster_rcnn)
+### [SSD](/ai/object_detection/ssd)
+### [YOLO_V1](/ai/object_detection/yolov1)
 
 ## 自然语言处理
 
-### [rnn入门](/ai/nlp/rnn_rumen)
+### [RNN入门（RNN,LSTM,GRU)](/ai/nlp/rnn_rumen)
+### [seq2seq](/ai/nlp/seq2seq)
 
 ## RL 强化学习
 
@@ -38,6 +45,7 @@ collapsable: true
 
 ### [network in network](/ai/References/network_in_network)
 ### [nas（神经网络结构搜索）](/ai/References/nas)
+### [selective search(选择性搜索)](/ai/References/selective_search)
 
 ## 我的设计
 

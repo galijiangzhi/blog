@@ -187,6 +187,10 @@ MobileNet_V2 是MobileNet_V1的升级版本，关于MobileNet_V1我们这里不�
             x = x.view(x.size(0), -1)
             x = self.fc(x)
             return x
+            
+    model = MobileNetV2(num_classes=10)
+    device = torch.device("cuda:0")
+    model.to(device)
 ### 模型实现--构建训练和测试函数
 
 首先构建损失函数和优化器

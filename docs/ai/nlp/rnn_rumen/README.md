@@ -169,43 +169,214 @@ torch.nn.RNN()继承自torch.nn.Module,其主要参数包括如下：<br>
     
 ![](./7.png)
 
-## MobileNet_V2介绍
+## LSTM（长短时记忆网络）
 
-### inverted升维的数学原理
+长短时记忆网络（Long Short-Term Memory，LSTM）是一种特殊的循环神经网络（RNN）架构，专门设计用于解决传统RNN中存在的长期依赖问题。LSTM通过引入门控机制来控制信息的流动，从而更好地捕捉和记忆长序列中的重要信息。
 
-## 手动实现算法（准备阶段）
-准备阶段我们要做一些准备工作同时处理一下数据集，这里我选择使用MNIST数据集
+RNN是想把所有的信息都记住，不管是有用的信息还是没用的信息，而LSTM设计了一个记忆细胞，具备选择性记忆的功能，可以选择重要信息记忆，过滤掉噪声信息，减轻记忆负担。
 
-工作化境：
->CPU: I3 10105F （x86_64）<br>
->GPU: ASUS 3060 12G<br>
->RAM: 威刚 DDR4 40G 2666<br>
->主板：MSI B560M-A<br>
->硬盘：WDC SN550 1T<br>
+### 原理
 
->OS: UBUNTU22.04<br>
->python版本：3.11.7<br>，
->torch版本：2.2.1<br>
->jupyter notebook<br> 
+![](./8.png)
 
-**注意事项：本实验尽量在有gpu的平台进行，使用个人电脑的cpu也可以将模型优化到不错的状态**
+LSTM的正向传播过程如上图所示，我们再对比以下rn的正向传播，这里我给出rnn的正向传播过程，如下图所示：
+
+![](./9.png)
+
+我们可以看出，rnn的内部比lstm简单很多，同时rnn的输入只有一个，而lstm的输入有两个。
+
+这里我们将lstm的模块单独拿出来讲解，如下图所示：
+
+![](./10.png)
+
+这里Ct-1指的是上一时刻的记忆细胞，ht-1指的是上一时刻的状态，σ指的是门单元，输出值是0~1之间的一个值，ft是遗忘门，it是输入门，ot是输出门，每个模块对应的公式如下：
+
+![](./11.png)
+
+接下来从公式的角度来解释一下lstm单元：
+
+Xt代表当前时间步的输入，ht-1表示上一个时间步的输出，这两个张量通过各自的W矩阵计算之后相加，作为三个σ的输入，ft遗忘门和ot输出门是相加矩阵直接进入σ，it更新们则是将进行σ和tanh操作之后相乘，最后这三个门会用于对Ct-1的加工，分别负责遗忘信息，输入信息和输出信息。
+
+![](./12.png)
+
+记忆细胞：记忆细胞的结构如上图所示，在lstm的每个时间步里，都有一个记忆细胞，这个东西给予了lstm选择记忆功能，使得lstm有能力自由选择每个时间步里记忆的内容。
+
+这里我们模拟一个期末考试的场景对记忆细胞进行深入理解，假设Xt输入是线性代数，我们希望学习线性代数来应对考试，首先ft门的任务就是，遗忘掉记忆细胞中和线性代数无关的东西，
+实现方法就是对应元素相乘，σ的输出都是0~1的数，和线性代数相关性大的部分就接近1，关系不大的就接近0，这样相乘之后越接近1的内容保留的就越好。
+
+it代表输入门，由两个分支组成，分别是σ和tanh，tanh就是传统rnn神经网络中生成信息的方法，σit是输入们，他也会生成一个张量，里面越接近线性代数的东西对应的值越大，对于没有用的知识保留的程度则很小，比如说在学习线性代数的时候，他会尽可能保留数学知识，但是对于数学历史之类考试不考的东西保留的程度很小。
+
+经过ft和it的更新之后，我们会生成新的记忆，也就是Ct，Ct就是之前的记忆经过“遗忘不重要的东西”，“记住新的重要的东西”之后得到的新的记忆。
+
+输出门ot则是使用新的记忆进行tanh，进行门操作，保留重要的部分，同时遗忘不重要的东西，作为本次的输出。
+
+至此，lstm的原理我们就理解完成了。 
+
+在rnn中，由于记忆单元和门控制机制的存在，可以缓解rnn梯度消失的问题，记忆单元有点像cnn中的残差，可以让关键信息一直传递下去。
+
+### 代码实现
+
+首先导包，确认gpu状态
+
+    import torch
+    import torch.nn as nn
+    if torch.cuda.is_available():
+        # 获取GPU设备数量
+        device_count = torch.cuda.device_count()
+        print(f"发现 {device_count} 个可用的GPU 设备")
+        # 获取每个GPU的名称
+        for i in range(device_count):
+            print(f"GPU 设备 {i}: {torch.cuda.get_device_name(i)}")
+    else:
+        print("没有发现可用的GPU")
+
+然后创建lstm基本单元，这里要根据下面的公式创建：
+
+![](./13.png)
+
+    class lstm_cell(nn.Module):
+        def __init__(self,in_dim,hidden_dim):
+            super(lstm_cell,self).__init__()
+            self.ix_linear = nn.Linear(in_dim,hidden_dim)
+            self.ih_linear = nn.Linear(hidden_dim,hidden_dim)
+            self.fx_linear = nn.Linear(in_dim,hidden_dim)
+            self.fh_linear = nn.Linear(hidden_dim,hidden_dim)
+            self.ox_linear = nn.Linear(in_dim,hidden_dim)
+            self.oh_linear = nn.Linear(hidden_dim,hidden_dim)
+            self.cx_linear = nn.Linear(in_dim,hidden_dim)
+            self.ch_linear = nn.Linear(hidden_dim,hidden_dim)
+
+        def forward(self,x,h_1,c_1):
+            i = torch.sigmoid(self.ix_linear(x)+self.ih_linear(h_1))
+            f = torch.sigmoid(self.fx_linear(x)+self.fh_linear(h_1))
+            o = torch.sigmoid(self.ox_linear(x)+self.oh_linear(h_1))
+            c_h = torch.tanh(self.cx_linear(x)+self.ch_linear(h_1))
+            c = f*c_1+i*c_h
+            h = o*torch.tanh(c)
+            return h,c
+
+然后构造lstm网络：
+
+    class lstm(nn.Module):
+        def __init__(self,in_dim,hidden_dim):
+            super(lstm,self).__init__()
+            self.hidden_dim = hidden_dim
+            self.lstm_cell = lstm_cell(in_dim,hidden_dim)
+        def forward(self,x):
+            outs=[]
+            h,c=None,None
+            for seq_x in x:
+                if h is None:h=torch.randn(x.shape[1],self.hidden_dim)
+                if c is None:c=torch.randn(x.shape[1],self.hidden_dim)
+                h,c = self.lstm_cell(seq_x,h,c)
+                outs.append(torch.unsqueeze(h,0))
+            outs = torch.cat(outs)
+            return outs,h
+
+构建训练数据，查看正向推理将结果：
+
+    batch_size = 24
+    seq_lens = 7
+    in_dim = 12
+    out_dim = 6
+    rnn = lstm(in_dim,out_dim)
+    x = torch.randn(seq_lens,batch_size,in_dim)
+    rnn(x)
+
+输出的结果如下：
+
+![](./14.png)
+
+如此，实验结束
+
+## GRU(门控迭代网络)
 
 
+门控循环单元（Gated Recurrent Unit，GRU）是一种常用的循环神经网络（RNN）变体，用于处理序列数据和时间序列数据。GRU通过引入门控机制来解决传统RNN中的梯度消失和梯度爆炸等问题，从而更好地捕捉长期依赖关系。
 
-### 检查算力平台情况
+门控制主要包括更新门和重置门，如下图所示，通过计算两个可以训练的参数来控制模型的记忆和遗忘，当我们掌握了lstm之后，gru就很好理解。
 
+![](./15.png)
 
-### 数据预处理
+候选隐状态：候选隐状态是一个用于更新当前时间步的隐状态的临时状态，计算规则如下：
 
+![](./16.png)
 
-## 手动实现算法（动手阶段）
-### 模型实现--构建模型
+隐状态：隐状态是指在模型中不直接观测到的状态，通常用于表示模型内部的信息和学习到的特征，其计算过程如下所示：
 
-### 模型实现--构建训练和测试函数
+![](./17.png)
 
-### 模型实现--小批量随机梯度下降
+总体来说，GRU就是上个时间步的信息\*一个权重+当前时间步*(1-权重)，这可以看成是lstm的一个简化版本。
 
+### 代码实现
+
+想对GRU进行代码实现，首先要看GRU的结构和公式，如下图所示：
+
+![](./18.png)
+
+首先导包，确认gpu情况
+
+    import torch
+    import torch.nn as nn
+    if torch.cuda.is_available():
+        # 获取GPU设备数量
+        device_count = torch.cuda.device_count()
+        print(f"发现 {device_count} 个可用的GPU 设备")
+        # 获取每个GPU的名称
+        for i in range(device_count):
+            print(f"GPU 设备 {i}: {torch.cuda.get_device_name(i)}")
+    else:
+        print("没有发现可用的GPU")
+
+定义gru模块
+
+    class gru_cell(nn.Module):
+        def __init__(self,in_dim,hidden_dim):
+            super(gru_cell,self).__init__()
+            self.rx_linear = nn.Linear(in_dim,hidden_dim)
+            self.rh_linear = nn.Linear(hidden_dim,hidden_dim)
+            self.zx_linear = nn.Linear(in_dim,hidden_dim)
+            self.zh_linear = nn.Linear(hidden_dim,hidden_dim)
+            self.hx_linear = nn.Linear(in_dim,hidden_dim)
+            self.hh_linear = nn.Linear(hidden_dim,hidden_dim)
+        def forward(self,x,h_1):
+            z = torch.sigmoid(self.zx_linear(x)+self.zh_linear(h_1))
+            r = torch.sigmoid(self.rx_linear(x)+self.rh_linear(h_1))
+            h_h = torch.tanh(self.hx_linear(x)+self.hh_linear(r*h_1))
+            h = z*h_1 + (1-z)*h_h
+            return h
+
+定义gru网络
+
+    class gru(nn.Module):
+        def __init__(self,in_dim,hidden_dim):
+            super(gru,self).__init__()
+            self.hidden_dim = hidden_dim
+            self.gru_cell = gru_cell(in_dim,hidden_dim)
+        def forward(self,x):
+            outs=[]
+            h = None
+            for seq_x in x:
+                if h is None:h=torch.randn(x.shape[1],self.hidden_dim)
+                h = self.gru_cell(seq_x,h)
+                outs.append(torch.unsqueeze(h,0))
+            outs = torch.cat(outs)
+            return outs,h
+
+测试网络
+
+    batch_size = 24
+    seq_lens = 7
+    in_dim = 12
+    out_dim = 6
+    rnn = gru(in_dim,out_dim)
+    x = torch.randn(seq_lens,batch_size,in_dim)
+    rnn(x)
+
+![](./19.png)
+
+至此，rnn的三种基本网络的原理和实验我就做完了。
 
 ## 总结
 
-在这一次实验中我对残差神经网络有了一点新的认识，比如残差网络中维度匹配不是必要的，可以根据自己对精度-速度的取舍来判断要不要进行维度匹配。
+在本次实验中，我手动实现了rnn的正向传播，理解了普通rnn的推理过程，同时学习了lstm和gru的原理和代码实现，为后续深入学习rnn打下了基础。
