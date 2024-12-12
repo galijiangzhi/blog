@@ -211,9 +211,9 @@ collapsable: true
 
 这个方法的两篇相关论文分别是：
 
-[DARTS: Differentiable Architecture Search(DARTS：可微分架构搜索)](http://xxx.itp.ac.cn/abs/1806.09055)
+[DARTS: Differentiable Architecture Search(DARTS：可微分架构搜索)](https://arxiv.org/abs/1806.09055)
 
-[FBNet: Hardware-Aware Efficient ConvNet Design via Differentiable Neural Architecture Search(FBNet：通过可变神经架构搜索实现硬件感知的高效 ConvNet 设计)](http://xxx.itp.ac.cn/abs/1812.03443)
+[FBNet: Hardware-Aware Efficient ConvNet Design via Differentiable Neural Architecture Search(FBNet：通过可变神经架构搜索实现硬件感知的高效 ConvNet 设计)](https://arxiv.org/abs/1812.03443)
 
 我们主要理解下面这篇论文，我们要主要关注思想，而不是具体的实现，当我们理解方法之后代码可以随便写：
 

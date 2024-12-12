@@ -6,7 +6,7 @@ collapsable: true
 ## YOLO_V1简介
 
 
-[YOLO_V1论文官方链接(点击查看)](http://xxx.itp.ac.cn/abs/1506.02640)
+[YOLO_V1论文官方链接(点击查看)](https://arxiv.org/abs/1506.02640)
 
 [YOLO_V1论文pdf链接(点击查看)](http://www.apache2.sanyueyu.top/blog/ai/object_detection/YOLO_V1/YOLO_V1.pdf)
 

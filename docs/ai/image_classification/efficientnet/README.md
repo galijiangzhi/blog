@@ -5,7 +5,7 @@ collapsable: true
 # EfficientNet
 ## EfficientNet介绍
 
-[EfficientNet论文官方链接(点击查看)](http://xxx.itp.ac.cn/abs/1905.11946)
+[EfficientNet论文官方链接(点击查看)](https://arxiv.org/abs/1905.11946)
 
 [EfficientNet论文备用链接(点击查看)](http://www.apache2.sanyueyu.top/blog/ai/image_classification/googlenet/GoogLeNet_v1.pdf)
 
