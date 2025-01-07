@@ -9,21 +9,27 @@ collapsable: true
 
 
 [seq2seq论文官方链接(点击查看)](https://arxiv.org/pdf/1409.3215)
-### 论文简述
+
+[seq2seq论文备用链接(点击查看)](http://www.apache2.sanyueyu.top/blog/ai/nlp/seq2seq/seq2seq.pdf)
+
+[seq2seq论文中文链接(本人翻译能力和手段有限，可以看看别人写的)](http://www.apache2.sanyueyu.top/blog/ai/nlp/seq2seq/seq2seq_cn.pdf)
+## 论文简述
 
 seq2seq的出现是为了解决深度神经网络不能用于解决序列映射序列任务的问题，团队使用多层LSTM将输入序列映射到一个固定维度的向量，然后使用另一个深度lstm从向量种解码目标序列，以达到序列映射到序列的目的。斌给钱在WMT14数据集中的英法互译任务中取得了不错的成绩。同时团队还得出了源句电刀规律：颠倒所有源句（而非目标句）中的词序能显著提高 LSTM 的性能，因为这样做在源句和目标句之间引入了许多短期依赖关系，从而使优化问题变得更容易。
 
 seq2seq最早的使用场景是机器翻译，编码器和解码器都是一个深度RNN模型，将编码器最后的状态传给解码器，解码器通过传入的数据来解析序列，直到解析到eos(结束标识符)，如下图所示
 ![](./1.png)
 
-seq2seq的编码器是一个没有输出的rnn网络，将编码器的隐状态作为解码器的初始状态，如下图所示，左边为编码器，右边为解码器：
+seq2seq的编码器是一个没有输出的rnn网络，将编码器的隐状态作为解码器的初始状态，然后将要翻译的目标作为解码器的输入，如下图所示，左边为编码器，右边为解码器：
 ![](./2.png)
 
 可以看到rnn的模型结构也蛮简单的，接下来我们就用这个结构来做一个简单的词语翻，词语翻译任务可以看作是一个简单的序列转序列任务，我们使用神经网络将英文序列转换成中文序列。
 
-### 简单seq2seq实验
+## 简单seq2seq实验
 
 实验目的：将英文单词翻译为中文单词
+
+### 准备工作
 
 首先是一些准备工作，包括检查gpu，模拟数据，以及一些数据预处理操作
 
@@ -33,6 +39,8 @@ seq2seq的编码器是一个没有输出的rnn网络，将编码器的隐状态�
     import torch.utils.data as Data
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     #通过以上代码我们导入了实验所用到的第三方库，设置了torch使用的计算环境
+
+### 数据集与预处理
 
     #模拟实验用到的数据集，这里我用了六组中英文词语作为实验数据
     seq_data = [['man', '男人'], ['black', '黑色'], ['king', '国王'], ['girl', '女孩'], ['up', '上'], ['high', '高']]
@@ -82,6 +90,8 @@ seq2seq的编码器是一个没有输出的rnn网络，将编码器的隐状态�
     #实例化数据集类
     loader = Data.DataLoader(TranslateDataSet(enc_input_all, dec_input_all, dec_output_all), batch_size, True)
 
+### 搭建模型
+
     #接下来搭建seq2seq模型类
     # Model
     class Seq2Seq(nn.Module):
@@ -105,7 +115,7 @@ seq2seq的编码器是一个没有输出的rnn网络，将编码器的隐状态�
     criterion = nn.CrossEntropyLoss().to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
 
-    #训练模型
+### 训练模型
 
     for epoch in range(5000):
         for enc_input_batch, dec_input_batch, dec_output_batch in loader:
@@ -131,7 +141,7 @@ seq2seq的编码器是一个没有输出的rnn网络，将编码器的隐状态�
             loss.backward()
             optimizer.step()
     
-    #查看测试结果
+### 测试模型
     def translate(word):
         enc_input, dec_input, _ = make_data([[word, '?' * n_step]])
         enc_input, dec_input = enc_input.to(device), dec_input.to(device)
@@ -152,8 +162,9 @@ seq2seq的编码器是一个没有输出的rnn网络，将编码器的隐状态�
     print('king ->', translate('king'))
     print('black ->', translate('black'))
     print('up ->', translate('up'))
-### 接口的简单调用
 
-### 手动实现正向传播
+以上实验都是seq2seq的最简单使用，可以根据自己的需求对网络结构进行调整。
 
-## 总结r
+## 总结
+
+该篇中我们使用了最简单的seq2seq模型对中英文进行了翻译，我们后续可以根据自己的需求对模型的结构进行调整，比如不适用rnn的任务，可以尝试使用lstm或者gru作为模型的主干网络。
