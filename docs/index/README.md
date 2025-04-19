@@ -36,7 +36,7 @@ collapsable: true
 
 ### [RNN入门（RNN,LSTM,GRU)](/ai/nlp/rnn_rumen)
 ### [seq2seq](/ai/nlp/seq2seq)
-
+### [transformer](/ai/nlp/transformer)
 ## RL 强化学习
 
 ### [强化学习入门](/ai/reinforcement_learning/summarize)
