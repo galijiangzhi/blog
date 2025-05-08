@@ -7,11 +7,11 @@ collapsable: true
 
 [SENet论文官方链接(点击查看)](https://arxiv.org/pdf/1709.01507)
 
-[SENet论文备用链接(点击查看)](http://www.apache2.sanyueyu.top/blog/ai/image_classification/SEnet/SEnet.pdf)
+[SENet论文备用链接(点击查看)](http://www.apache2.sanyueyu.top/blog/ai/image_classification/senet/senet.pdf)
 
 下面中文论文中有些图片分辨率太低了，图片方面可以参考上面备用链接里的图片
 
-[SENet论文中文pdf链接(点击查看)（本人翻译能力和手段有限，可以看看别人写的）](http://www.apache2.sanyueyu.top/blog/ai/image_classification/SEnet/SEnetcn.pdf)
+[SENet论文中文pdf链接(点击查看)（本人翻译能力和手段有限，可以看看别人写的）](http://www.apache2.sanyueyu.top/blog/ai/image_classification/senet/senetcn.pdf)
 
 
 
