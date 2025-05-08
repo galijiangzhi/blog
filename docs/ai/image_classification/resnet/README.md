@@ -7,11 +7,11 @@ collapsable: true
 
 [ResNet论文官方链接(点击查看)](https://arxiv.org/pdf/1512.03385)
 
-[ResNet论文备用链接(点击查看)](http://www.apache2.sanyueyu.top/blog/ai/image_classification/resnet/resnet.pdf)
+[ResNet论文备用链接(点击查看)](http://www.apache2.sanyueyu.top/blog/ai/image_classification/senet/senet.pdf)
 
 下面中文论文中有些图片分辨率太低了，图片方面可以参考上面备用链接里的图片
 
-[GoogLeNet_v1论文中文pdf链接(点击查看)（本人翻译能力和手段有限，可以看看别人写的）](http://www.apache2.sanyueyu.top/blog/ai/image_classification/resnet/resnetcn.pdf)
+[GoogLeNet_v1论文中文pdf链接(点击查看)（本人翻译能力和手段有限，可以看看别人写的）](http://www.apache2.sanyueyu.top/blog/ai/image_classification/senet/senet_cn.pdf)
 
 ResNet团队表示，深度很大的网络通常难以训练，团队提出了残差学习框架，以便训练更深的网络。<br>
 
