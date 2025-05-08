@@ -9,7 +9,9 @@ collapsable: true
 
 
 [Transformer论文官方链接(点击查看)](https://arxiv.org/pdf/1706.03762)
+
 [Transformer论文备用链接(点击查看)](http://www.apache2.sanyueyu.top/blog/ai/nlp/transformer/transformer.pdf)
+
 [Transformer中文论文链接(点击查看)（本人翻译能力和手段有限，可以看看别人写的）](http://www.apache2.sanyueyu.top/blog/ai/nlp/transformer/transformer_cn.pdf)
 ### 论文简述
 
