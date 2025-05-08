@@ -7,11 +7,11 @@ collapsable: true
 
 [MobileNet_V1论文官方链接(点击查看)](http://xxx.itp.ac.cn/pdf/1704.04861v1)
 
-[MobileNet_V1论文备用链接(点击查看)](http://www.apache2.sanyueyu.top/blog/ai/image_classification/MobileNet_V1/MobileNet_V1.pdf)
+[MobileNet_V1论文备用链接(点击查看)](http://www.apache2.sanyueyu.top/blog/ai/image_classification/mobilenetv1/mobilenet.pdf)
 
 下面中文论文中有些图片分辨率太低了，图片方面可以参考上面备用链接里的图片
 
-[MobileNet_V1论文中文pdf链接(点击查看)（本人翻译能力和手段有限，可以看看别人写的）](http://www.apache2.sanyueyu.top/blog/ai/image_classification/MobileNet_V1/MobileNet_V1cn.pdf)
+[MobileNet_V1论文中文pdf链接(点击查看)（本人翻译能力和手段有限，可以看看别人写的）](http://www.apache2.sanyueyu.top/blog/ai/image_classification/mobilenetv1/mobilenet_cn.pdf)
 
 
 
