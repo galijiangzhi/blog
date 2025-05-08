@@ -7,11 +7,11 @@ collapsable: true
 
 [EfficientNet论文官方链接(点击查看)](https://arxiv.org/abs/1905.11946)
 
-[EfficientNet论文备用链接(点击查看)](http://www.apache2.sanyueyu.top/blog/ai/image_classification/googlenet/GoogLeNet_v1.pdf)
+[EfficientNet论文备用链接(点击查看)](http://www.apache2.sanyueyu.top/blog/ai/image_classification/efficientnet/efficientnet.pdf)
 
 下面中文论文中有些图片分辨率太低了，图片方面可以参考上面备用链接里的图片，而且GoogLeNet的论文写的巨抽象，大概是因为我见识浅薄，读起来很吃力
 
-[EfficientNet论文中文pdf链接(点击查看)（本人翻译能力和手段有限，可以看看别人写的）](http://www.apache2.sanyueyu.top/blog/ai/image_classification/googlenet/GoogLeNet_v1cn.pdf)
+[EfficientNet论文中文pdf链接(点击查看)（本人翻译能力和手段有限，可以看看别人写的）](http://www.apache2.sanyueyu.top/blog/ai/image_classification/efficientnet/efficientnet_cn.pdf)
 
 efficientnet由谷歌在2019年发布的论文中提出，文中提出的efficientnet-b7在imagenet top-1上达到了当年最高准确率84.3%，与之前准确率最高的gpipe相比，参数数量仅为其1/8.4，推理速度提升了6.1倍，下图展示了efficientnet与当前主流网络之间的对比，横轴为参数数量，纵轴为top1准确率
 

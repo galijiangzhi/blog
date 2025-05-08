@@ -9,6 +9,8 @@ collapsable: true
 
 
 [Transformer论文官方链接(点击查看)](https://arxiv.org/pdf/1706.03762)
+[Transformer论文备用链接(点击查看)](http://www.apache2.sanyueyu.top/blog/ai/nlp/transformer/transformer.pdf)
+[Transformer中文论文链接(点击查看)（本人翻译能力和手段有限，可以看看别人写的）](http://www.apache2.sanyueyu.top/blog/ai/nlp/transformer/transformer_cn.pdf)
 ### 论文简述
 
 transformer的标题是 attention is all you need 可以‘理解为集中你的注意力’。该论文提出了一个简单的架构，名字叫transformer，该模型仅仅使用了注意力机制，没有使用cnn和rnn，该模型在英语到德语的翻译任务中取得了28.4的BLEU得分。并且在英语-法语机器翻译任务中取得了前所未有的好成绩，该模型的最初目的是用于机器翻译，但是现在也可以泛化到其他任务领域。
